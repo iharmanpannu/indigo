@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Indigo Slate</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/main.css">
+</head>
+
+<body>
+    <div id="app" class="wrapper">
+
+        <header class="main-header">
+
+            <div class="main-header-menu ">
+                <div class="main-header-ul">
+                    <img id="logo" src="src/img/logo.svg" alt="">
+                    <h2>
+                        <a class="nav-toggle" v-bind:class="{ active: active }" @click="show = !show, active = !active">
+                            <span></span>
+                        </a>
+                    </h2>
+                </div>
+            </div>
+            <div class="container">
+                <!-- Main nav starts here  -->
+                <!-- main nav vue transition below -->
+                <transition name="slide-fade">
+                    <!-- vue animation if/else below  -->
+                    <nav class="main-nav" v-if="show">
+                        <!-- Main nav header and title  -->
+                        <div class="main-nav-header">
+                            <h2>Hello User</h2>
+                            <h3>Welcome Back</h3>
+                        </div>
+                        <div class="main-nav-container">
+                            <!-- Main navigation ul list below  -->
+
+                            <ul v-click-outside="hide" class="main-nav-ul">
+                                <li>
+                                    <li class="split-li">
+                                        <span>
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </span>
+                                        MY SCHEDULE & BIDDING
+                                        <a class="main-nav-spans" href="#">
+                                            <i class="fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </li>
+
+                                <li>
+                                    <li class="split-li">
+                                        <span>
+                                            <i class="fas fa-handshake"></i>
+                                        </span>
+                                        SAFETY
+                                        <a @click="safNavShow = !safNavShow" class="main-nav-spans" href="#">
+                                            <i class="fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <!-- Sub nav transition below -->
+                                    <transition name="slide-right">
+                                        <!-- vue animation if/else below  -->
+                                        <div class="sub-nav saf-nav-toggle" v-if="safNavShow">
+                                            <div class="sub-nav-header ">
+                                                <h3>
+                                                    <li class="split-li no-hover">
+                                                        <span>
+                                                            SAFETY
+                                                        </span>
+
+                                                        <a @click="safNavShow = !safNavShow" class="sub-nav-icons" href="#">
+                                                            <i class="fas fa-times"></i>
+                                                        </a>
+                                                    </li>
+
+                                                </h3>
+                                            </div>
+                                            <ul class="sub-nav-menu">
+                                                <li>
+                                                    <li @click="repNavUl =!repNavUl, rotateDropDown =!rotateDropDown" class="split-li">
+                                                        <span>
+                                                            Reporting
+                                                        </span>
+
+                                                        <a v-bind:class="{ rotateDropDown: rotateDropDown }" class="main-nav-spans" href="#">
+                                                            <i class="fas fa-angle-down"></i>
+                                                        </a>
+                                                    </li>
+
+
+                                                    <transition name="rep-nav">
+                                                        <ul class="sub-nav-ul" v-if="repNavUl">
+                                                            <li>
+                                                                <a href="#">I-21 Injury Reporting</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">ASAP Reporting</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">General ASAP Information</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Flight Attendent Incident Report</a>
+                                                            </li>
+                                                        </ul>
+                                                    </transition>
+                                                </li>
+
+                                                <li>
+                                                    <li class="split-li">
+                                                        <span>
+                                                            Agriculture & Customs
+                                                        </span>
+                                                        <a class="main-nav-spans" href="#">
+                                                            <i class="fas fa-angle-down"></i>
+                                                        </a>
+                                                    </li>
+
+                                                </li>
+                                                <li>
+                                                    <li class="sub-first-nav-li">
+                                                        Known Crewmember
+                                                    </li>
+                                                </li>
+
+                                                <li>
+                                                    <li class="sub-first-nav-li">
+                                                        Products Safety Data Search
+                                                    </li>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </transition>
+                                </li>
+                                <li>
+                                    <li class="split-li no-arrow-li">
+                                        <span>
+                                            <i class="fas fa-users"></i>
+                                        </span>
+                                        TRAINING
+
+                                    </li>
+                                </li>
+                                <li>
+                                    <li class="split-li  ">
+                                        <span>
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                        ADMINSTRATION
+                                        <a @click="admNavShow = !admNavShow" class="main-nav-spans" href="#">
+                                            <i class="fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <transition name="slide-right">
+                                        <div class="sub-nav admin-nav-toggle" v-if="admNavShow">
+                                            <div class="sub-nav-header">
+                                                <h3>
+                                                    <li class="split-li no-hover">
+                                                        <span>
+                                                            ADMINSTRATION
+                                                        </span>
+
+                                                        <a @click="admNavShow = !admNavShow" class="sub-nav-icons" href="#">
+                                                            <i class="fas fa-times"></i>
+                                                        </a>
+                                                    </li>
+
+                                                </h3>
+                                            </div>
+                                            <ul>
+
+                                                <li>
+                                                    <li class="split-li">
+                                                        <span>
+                                                            OJI and Leaves
+                                                        </span>
+                                                        <a class="main-nav-spans" href="#">
+                                                            <i class="fas fa-angle-down"></i>
+                                                        </a>
+                                                    </li>
+
+                                                </li>
+                                                <li>
+                                                    <li class="split-li">
+                                                        <span>
+                                                            Pay and Benefits
+                                                        </span>
+                                                        <a class="main-nav-spans" href="#">
+                                                            <i class="fas fa-angle-down"></i>
+                                                        </a>
+                                                    </li>
+
+                                                </li>
+                                                <li>
+                                                    <li class="split-li">
+                                                        <span>
+                                                            Performace
+                                                        </span>
+                                                        <a class="main-nav-spans" href="#">
+                                                            <i class="fas fa-angle-down"></i>
+                                                        </a>
+                                                    </li>
+
+                                                </li>
+                                                <li>
+                                                    <li class="sub-first-nav-li">
+                                                        Inflight Resource Directory
+
+                                                    </li>
+
+                                                </li>
+                                                <li>
+                                                    <li class="split-li">
+                                                        <span>
+                                                            Mobile and Web
+                                                        </span>
+                                                        <a class="main-nav-spans" href="#">
+                                                            <i class="fas fa-angle-down"></i>
+                                                        </a>
+                                                    </li>
+
+                                                </li>
+                                                <li>
+                                                    <li class="sub-first-nav-li">
+                                                        AFA
+                                                    </li>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </transition>
+                                </li>
+                                <li>
+                                    <li class="split-li ">
+                                        <span>
+                                            <i class="fas fa-utensils"></i>
+                                            CATERING & BRAND
+                                        </span>
+                                        <a class="main-nav-spans" href="#">
+
+                                            <i class="fas fa-angle-right"></i>
+
+                                        </a>
+                                    </li>
+                                </li>
+                                <li>
+                                    <li class="split-li no-arrow-li">
+                                        <span>
+                                            <i class="fas fa-bed"></i>
+                                        </span>
+                                        HOTELS
+                                    </li>
+
+                                </li>
+                                <li>
+                                    <li class="split-li no-arrow-li">
+                                        <span>
+                                            <i class="fas fa-home"></i>
+                                        </span>
+                                        MY BASE
+                                    </li>
+
+                                </li>
+                                <li>
+                                    <li class="split-li no-arrow-li">
+                                        <span>
+                                            <i class="fas fa-certificate"></i>
+                                        </span>
+                                        RECOGNITION
+                                    </li>
+
+                                </li>
+                                <li>
+                                    <li class="split-li no-arrow-li">
+                                        <span>
+                                            <i class="fas fa-male"></i>
+                                        </span>
+                                        MY LEADERSHIP TEAM
+                                    </li>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </nav>
+                </transition>
+            </div>
+
+        </header>
+        <div class="home-page" v-if="home">
+            <h1>Expect Greatness</h1>
+            <h4>Let's Build Something Great Together</h4>
+            <div class="styles-background">
+                <div class="dots dotOne"></div>
+                <div class="dots dotTwo"></div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="src/js/main.js"></script>
+</body>
+
+</html>
